@@ -33,17 +33,23 @@ public class OtpService implements IOtpService {
         try {
             cacheCode = otpCacheManager.getCache().get(key);
         } catch (ExecutionException exception) {
+            // Wrong key or Auth Code have been expire
             return OtpRes.noOTP(authCode);
         }
 
         // Compare OTP
         if (cacheCode.getPassCode().equals(authCode.getPassCode())){
-            otpCacheManager.getCache().refresh(key);
+            otpCacheManager.getCache().	invalidate(key);
             return OtpRes.successVerify(authCode);
         } else {
+
+            // Too many tries
             if (cacheCode.getNTries().equals(0)){
+                otpCacheManager.getCache().	invalidate(key);
                 return OtpRes.invalidOTP(authCode);
             }
+
+            // Wrong OTP decrease num of tries
             otpCacheManager.getCache().put(key, cacheCode.decreaseTries());
             authCode.setNTries(cacheCode.getNTries());
             return OtpRes.wrongOTP(authCode);

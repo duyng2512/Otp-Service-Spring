@@ -37,7 +37,6 @@ public class ClientService {
     @Async
     public CompletableFuture<ResponseEntity<ClientResponse>> send(ClientRequest request){
         ResponseEntity<ClientResponse>  response = restTemplate.postForEntity(smsURL, request, ClientResponse.class);
-        log.info(response.toString());
         return CompletableFuture.completedFuture(response);
     }
 }

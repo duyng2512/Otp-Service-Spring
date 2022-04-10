@@ -15,4 +15,3 @@ public class Requestor {
     private String transId;
     private String transType;
 }
-
