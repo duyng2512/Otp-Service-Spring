@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: SMSB Service
+  version: 1.0.0 Snapshot
+servers:
+  - url: https://localhost:8080/smsb
+paths:
+  /:
+    post:
+      summary: Send OTP to SMSB
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+      responses:
+        '200':
+          description: Created OTP and send successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '500':
+          description: Server failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '404':
+          description: A user with the specified ID was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+components:
+  schemas:
+    Request:
+      type: object
+      properties:
+        requestor:
+          type: object
+          properties:
+            service:
+              type: string
+              example: ECOM
+            userId:
+              type: integer
+              example: 318612
+            timeStamp:
+              type: string
+              example: 2022-04-10T02:00:22Z
+            transId:
+              type: string
+              example: 80ac3089-4c32-44bf-8657-21877c78c72a
+            transType:
+              type: string
+              example: ECOM
+        delivery:
+          type: object
+          properties:
+            deliveryAddress:
+              type: string
+            deliveryMethod:
+              type: string
+              enum: [EMAIL, SMS]
+        authenticator:
+          type: object
+          properties:
+            authCode:
+              type: string
+              example: 122351
+            sid:
+              type: string
+              example: 21877c78c72a
+    Response:
+      type: object
+      properties:
+        timeStamp:
+          type: string
+          example: 2022-04-10T02:00:22Z
+        rc:
+          type: string
+        message:
+          type: string
