@@ -1,0 +1,88 @@
+<!-- Logback configuration file -->
+<configuration>
+
+    <!-- Default appender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%green(%d{HH:mm:ss.SSS}) %red(%thread) %highlight(%-5level) %cyan(%logger{15}) - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <property name="COMMON_PATTERN" value="%d{HH:mm:ss.SSS} %-5level [%thread]: %msg %n" />
+
+    <!-- Messages AppLog -->
+    <appender name="MessagesLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${user.dir}/logs/message-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxHistory>3</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <immediateFlush>true</immediateFlush>
+        <encoder>
+            <pattern>${COMMON_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Errors AppLog -->
+    <appender name="ErrorsLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${user.dir}/logs/errors-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxHistory>3</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <immediateFlush>true</immediateFlush>
+        <encoder>
+            <pattern>${COMMON_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Monitor AppLog -->
+    <appender name="MonitorLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${user.dir}/logs/monitor-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxHistory>3</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <immediateFlush>true</immediateFlush>
+        <encoder>
+            <pattern>${COMMON_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Cache AppLog -->
+    <appender name="CacheLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${user.dir}/logs/cache-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxHistory>3</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${COMMON_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Loggers -->
+    <logger name="messages" level="DEBUG" additivity="false">
+        <appender-ref ref="MessagesLogFile"/>
+    </logger>
+
+    <logger name="errors" level="DEBUG" additivity="false">
+        <appender-ref ref="ErrorsLogFile"/>
+    </logger>
+
+    <logger name="monitor" level="DEBUG" additivity="false">
+        <appender-ref ref="MonitorLogFile"/>
+    </logger>
+
+    <logger name="cache" level="DEBUG" additivity="false">
+        <appender-ref ref="CacheLogFile"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

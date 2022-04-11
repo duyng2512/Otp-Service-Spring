@@ -1,0 +1,59 @@
+10:01:48.311 Found parameter [otp-expire-time]180
+10:01:48.311 Found parameter [stat-enable]true
+10:01:48.311 Found parameter [concurrentLevel]10
+10:02:46.204 Found parameter [otp-expire-time]180
+10:02:46.204 Found parameter [stat-enable]true
+10:02:46.204 Found parameter [concurrentLevel]10
+10:02:46.451     __
+10:02:46.451  .--|  | .-----. .-----.
+10:02:46.451  |  _  | |     | |  _  |
+10:02:46.451  |_____| |__|__| |___  |
+10:02:46.451                  |_____|
+10:07:17.143 Found parameter [otp-expire-time]180
+10:07:17.143 Found parameter [stat-enable]true
+10:07:17.143 Found parameter [concurrentLevel]10
+10:07:17.406     __
+10:07:17.406  .--|  | .-----. .-----.
+10:07:17.406  |  _  | |     | |  _  |
+10:07:17.406  |_____| |__|__| |___  |
+10:07:17.406                  |_____|
+10:10:14.781 INFO  [main] messages Found parameter [otp-expire-time]180
+10:10:14.781 INFO  [main] messages Found parameter [stat-enable]true
+10:10:14.781 INFO  [main] messages Found parameter [concurrentLevel]10
+10:10:15.044 INFO  [main] messages     __
+10:10:15.044 INFO  [main] messages  .--|  | .-----. .-----.
+10:10:15.044 INFO  [main] messages  |  _  | |     | |  _  |
+10:10:15.044 INFO  [main] messages  |_____| |__|__| |___  |
+10:10:15.044 INFO  [main] messages                  |_____|
+[32m10:10:56.892[0;39m [34mINFO [0;39m [main] messages Found parameter [otp-expire-time]180
+[32m10:10:56.892[0;39m [34mINFO [0;39m [main] messages Found parameter [stat-enable]true
+[32m10:10:56.892[0;39m [34mINFO [0;39m [main] messages Found parameter [concurrentLevel]10
+[32m10:10:57.171[0;39m [34mINFO [0;39m [main] messages     __
+[32m10:10:57.171[0;39m [34mINFO [0;39m [main] messages  .--|  | .-----. .-----.
+[32m10:10:57.171[0;39m [34mINFO [0;39m [main] messages  |  _  | |     | |  _  |
+[32m10:10:57.171[0;39m [34mINFO [0;39m [main] messages  |_____| |__|__| |___  |
+[32m10:10:57.171[0;39m [34mINFO [0;39m [main] messages                  |_____|
+10:11:28.821 INFO  [main] messages Found parameter [otp-expire-time]180 
+10:11:28.821 INFO  [main] messages Found parameter [stat-enable]true 
+10:11:28.821 INFO  [main] messages Found parameter [concurrentLevel]10 
+10:11:29.069 INFO  [main] messages     __ 
+10:11:29.069 INFO  [main] messages  .--|  | .-----. .-----. 
+10:11:29.069 INFO  [main] messages  |  _  | |     | |  _  | 
+10:11:29.069 INFO  [main] messages  |_____| |__|__| |___  | 
+10:11:29.069 INFO  [main] messages                  |_____| 
+10:12:17.749 INFO  [main]: Found parameter [otp-expire-time]180 
+10:12:17.749 INFO  [main]: Found parameter [stat-enable]true 
+10:12:17.749 INFO  [main]: Found parameter [concurrentLevel]10 
+10:12:17.996 INFO  [main]:     __ 
+10:12:17.996 INFO  [main]:  .--|  | .-----. .-----. 
+10:12:17.996 INFO  [main]:  |  _  | |     | |  _  | 
+10:12:17.996 INFO  [main]:  |_____| |__|__| |___  | 
+10:12:17.996 INFO  [main]:                  |_____| 
+15:18:26.404 INFO  [restartedMain]: Found parameter [otp-expire-time]180 
+15:18:26.404 INFO  [restartedMain]: Found parameter [stat-enable]true 
+15:18:26.404 INFO  [restartedMain]: Found parameter [concurrentLevel]10 
+15:18:26.748 INFO  [restartedMain]:     __ 
+15:18:26.748 INFO  [restartedMain]:  .--|  | .-----. .-----. 
+15:18:26.748 INFO  [restartedMain]:  |  _  | |     | |  _  | 
+15:18:26.748 INFO  [restartedMain]:  |_____| |__|__| |___  | 
+15:18:26.749 INFO  [restartedMain]:                  |_____| 

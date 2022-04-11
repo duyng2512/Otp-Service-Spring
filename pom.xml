@@ -6,6 +6,7 @@
     <modules>
         <module>otp-common</module>
         <module>otp-core</module>
+        <module>otp-app</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

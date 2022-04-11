@@ -7,6 +7,7 @@ import com.google.common.cache.LoadingCache;
 import com.google.common.cache.RemovalListener;
 import config.LoadConfig;
 import org.springframework.stereotype.Service;
+import utils.log.AppLog;
 
 import java.util.NoSuchElementException;
 import java.util.concurrent.ExecutionException;
@@ -16,21 +17,23 @@ import java.util.logging.Logger;
 @Service
 public class OtpCacheManager {
 
-    Logger logger = Logger.getLogger(OtpCacheManager.class.getSimpleName());
-
     private Ticker ticker;
 
     private final LoadingCache<OtpKey, OtpAuthCode> loadingCache;
 
+    @SuppressWarnings("ConstantConditions")
     public OtpCacheManager() {
         RemovalListener<OtpKey, OtpAuthCode> removalListener = removalNotification -> {
-            System.out.println(removalNotification.getCause());
-            System.out.println(removalNotification.wasEvicted());
+
+            AppLog.cache().info("Key SID {} was evicted because {}",
+                    removalNotification.getKey().getSid(),
+                    removalNotification.getCause().toString());
         };
 
         CacheLoader<OtpKey, OtpAuthCode> cacheLoader = new CacheLoader<>() {
             @Override
             public OtpAuthCode load(OtpKey otpKey) throws Exception {
+                AppLog.error().error("No AuthCode associate with key " + otpKey.toString());
                 throw new ExecutionException("No AuthCode associate with key " + otpKey.toString(), new NoSuchElementException());
             }
         };
@@ -38,11 +41,11 @@ public class OtpCacheManager {
         ticker = Ticker.systemTicker();
         
         long expireTime = Long.parseLong(LoadConfig.getProperties("otp-expire-time"));
-        logger.info("[otp-expire-time]" + expireTime);
+        AppLog.messages().info("Found parameter [otp-expire-time]" + expireTime);
         boolean statEnable = Boolean.parseBoolean(LoadConfig.getProperties("stat-enable"));
-        logger.info("[stat-enable]" + statEnable);
+        AppLog.messages().info("Found parameter [stat-enable]" + statEnable);
         int concurrentLevel = Integer.parseInt(LoadConfig.getProperties("concurrent-level"));
-        logger.info("[concurrentLevel]" + concurrentLevel);
+        AppLog.messages().info("Found parameter [concurrentLevel]" + concurrentLevel);
 
         CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder();
 

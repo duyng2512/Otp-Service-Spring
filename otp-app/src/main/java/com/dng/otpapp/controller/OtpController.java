@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import service.impl.OtpService;
+import utils.log.AppLog;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -27,7 +28,6 @@ import java.util.concurrent.TimeoutException;
 
 @RestController
 @RequestMapping("otp")
-@Slf4j
 public class OtpController {
 
     private final OtpService otpService;
@@ -45,13 +45,13 @@ public class OtpController {
     @PostMapping("create")
     @SuppressWarnings("ConstantConditions")
     public ResponseEntity<Object> createOtp(@RequestBody CreateRequest request){
-        log.info("Create Request Receive [" + request.toString() + "]");
+        AppLog.messages().info("Create Request Receive [" + request.toString() + "]");
         OtpKey key = appService.genKeyFromReq(request.getRequestor());
         String sid = key.getSid();
         OtpAuthCode authCode = otpService.create(key)
                                          .getReturnObject();
 
-        log.info("OTP key [" + key.toString() + "]");
+        AppLog.messages().info("OTP key [" + key.toString() + "]");
 
         ClientRequest cliReq = appService.makeCliReq(request.getRequestor(),
                                                     request.getDelivery(),
@@ -75,15 +75,13 @@ public class OtpController {
 
     @PostMapping("validate")
     public ResponseEntity<Object> verifyOtp(@RequestBody ValidateRequest request){
-        log.info("Validate Request Receive [" + request.toString() + "]");
+        AppLog.messages().info("Validate Request Receive [" + request.toString() + "]");
 
         OtpKey key = appService.genKeyFromReq(request.getRequestor(), request.getAuthenticator());
         OtpAuthCode code = new OtpAuthCode(request.getAuthenticator().getAuthCode());
         OtpRes<OtpAuthCode> otpRes = otpService.verify(key, code);
 
-        log.info("Validate Key [" + key.toString() + "]");
-        log.info("AuthCode [" + code.toString() + "]");
-        log.info("OTP Response [" + otpRes.toString() + "]");
+        AppLog.messages().info("Validate Key [" + key.toString() + "]");
 
         switch (otpRes.getRc()) {
             case "OK":

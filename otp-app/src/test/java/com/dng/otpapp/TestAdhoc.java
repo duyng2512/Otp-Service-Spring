@@ -5,6 +5,7 @@ import com.dng.otpapp.service.dto.Requestor;
 import core.OtpKey;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
+import utils.log.AppLog;
 
 import java.time.Instant;
 
@@ -21,6 +22,12 @@ public class TestAdhoc {
 
         OtpKey key = new AppService().genKeyFromReq(requestor);
         System.out.println(key.toString());
+    }
+
+    @Test
+    public void testLog(){
+        AppLog.cache().info("Hello World");
+        AppLog.messages().info("Hello World");
     }
 
 }

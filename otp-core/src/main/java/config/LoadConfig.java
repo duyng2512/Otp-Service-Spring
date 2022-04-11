@@ -1,5 +1,7 @@
 package config;
 
+import utils.log.AppLog;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,9 +16,9 @@ public class LoadConfig {
         try(InputStream inputStream = LoadConfig.class.getClassLoader().getResourceAsStream(FILE_CONFIG)) {
             properties.load(inputStream);
         } catch (IOException exception) {
-            exception.printStackTrace();
+            AppLog.error().error("Unable to load " + FILE_CONFIG, exception);
         } catch (NullPointerException exception){
-            System.err.println("File " + FILE_CONFIG + " not found");
+            AppLog.error().error("File " + FILE_CONFIG + " not found", exception);
         }
     }
 
